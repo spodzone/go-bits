@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"math"
+	"os"
+	"strconv"
 )
 
 func primes(x int64) []int64 {
@@ -36,5 +38,11 @@ func main() {
 	for _, x := range lst {
 		fmt.Printf("Test isprime %d=%t\n", x, isprime(x))
 	}
-	fmt.Println("Primes up to 100", primes(int64(100)))
+	var limit int64 = 100
+	if len(os.Args) > 1 {
+		p, _ := strconv.Atoi(os.Args[1])
+		limit = int64(p)
+	}
+	fmt.Printf("Primes up to %d\n", limit)
+	fmt.Println(primes(int64(limit)))
 }
